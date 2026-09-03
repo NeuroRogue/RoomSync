@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Resource Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-brand">
+            <h1>CampusSpace</h1>
+            <span class="badge">Prototype</span>
+        </div>
+        <div class="stats-bar" id="stats-bar">
+            <span class="stat"><strong id="stat-free">0</strong> Free</span>
+            <span class="stat"><strong id="stat-occupied">0</strong> Occupied</span>
+            <span class="stat"><strong id="stat-booked">0</strong> Booked Later</span>
+        </div>
+        <div class="simulation-panel">
+            <div class="sim-time" id="sim-time-display">--:--</div>
+            <div class="sim-controls">
+                <button id="btn-add-15m" title="Advance 15 mins">+15m</button>
+                <button id="btn-add-1h" title="Advance 1 hour">+1h</button>
+                <button id="btn-reset-time" title="Reset to Now">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="toolbar">
+            <div class="search-wrap">
+                <input type="text" id="filter-search" placeholder="Search resources, tags..." aria-label="Search">
+            </div>
+            <div class="filters">
+                <select id="filter-category" aria-label="Filter by category">
+                    <option value="all">All Types</option>
+                    <option value="room">Rooms</option>
+                    <option value="lab">Labs</option>
+                    <option value="equipment">Equipment</option>
+                </select>
+                <select id="filter-status" aria-label="Filter by status">
+                    <option value="all">All Statuses</option>
+                    <option value="Free">Free</option>
+                    <option value="Occupied">Occupied</option>
+                    <option value="Booked">Booked Later</option>
+                </select>
+                <button id="btn-reset-demo" class="btn-outline">Reset Demo Data</button>
+            </div>
+        </section>
+
+        <section class="resource-grid" id="resource-grid" aria-live="polite">
+            <!-- Cards injected here by JS -->
+        </section>
+    </main>
+
+    <dialog id="booking-modal" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Book Resource</h2>
+                <button class="close-btn" id="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+            <form id="booking-form">
+                <input type="hidden" id="book-resource-id">
+                
+                <div class="form-group">
+                    <label>Resource</label>
+                    <div id="book-resource-name" class="faux-input read-only"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="book-start">Start Time</label>
+                        <input type="datetime-local" id="book-start" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="book-end">End Time</label>
+                        <input type="datetime-local" id="book-end" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-name">Your Name</label>
+                    <input type="text" id="book-name" required placeholder="e.g. Jane Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="book-purpose">Purpose</label>
+                    <input type="text" id="book-purpose" required placeholder="e.g. Project meeting">
+                </div>
+
+                <div id="booking-error" class="error-msg" hidden></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" id="btn-cancel-booking">Cancel</button>
+                    <button type="submit" class="btn-primary">Confirm Booking</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <script src="js/time.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

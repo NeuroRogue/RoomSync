@@ -3,7 +3,6 @@ const grid = document.getElementById('resource-grid');
 const searchInput = document.getElementById('filter-search');
 const typeFilter = document.getElementById('filter-category');
 const statusFilter = document.getElementById('filter-status');
-const resetDemoBtn = document.getElementById('btn-reset-demo');
 
 // Stats
 const statFree = document.getElementById('stat-free');
@@ -53,12 +52,6 @@ function setupEventListeners() {
     searchInput.addEventListener('input', render);
     typeFilter.addEventListener('change', render);
     statusFilter.addEventListener('change', render);
-
-    resetDemoBtn.addEventListener('click', () => {
-        initializeData(true);
-        resetTime();
-        render();
-    });
 
     btnAdd15m.addEventListener('click', () => advanceTime(15));
     btnAdd1h.addEventListener('click', () => advanceTime(60));
